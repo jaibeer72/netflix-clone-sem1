@@ -17,7 +17,7 @@ export default function Header(props) {
     )
 }
 
-const Container = styled.header`
+const Container = styled.div`
 padding: 0 4rem;
 .logo {
     img{
