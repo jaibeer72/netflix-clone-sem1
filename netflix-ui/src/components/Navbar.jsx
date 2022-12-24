@@ -5,7 +5,7 @@ import { Link , useNavigate} from 'react-router-dom'
 import styled from 'styled-components'
 import logo from "../assets/logo.png"
 import { firebaseAuth } from '../utils/firebase-config'
-export default function Navbar(isScrolled) {
+export default function Navbar({isScrolled}) {
     const links= [
         {name:"Home",link: "/"},
         {name:"TV Shows",link: "/tv"},
@@ -14,7 +14,7 @@ export default function Navbar(isScrolled) {
     ];
     const navigate = useNavigate();
     onAuthStateChanged(firebaseAuth, (currenUser) => {
-      if (!currenUser) navigate("/");
+      if (!currenUser) navigate("/login");
   
     });
 
@@ -24,7 +24,7 @@ export default function Navbar(isScrolled) {
 
   return (
     <Container>
-        <nav className={`flex ${isScrolled ? "scrolled":""}`}>
+        <nav className={`flex ${isScrolled ? "scrolled":""} flex`}>
           <div className="left flex a-center">
             <div className="brand flex a-center j-center">
               <img src={logo} alt="logo"/>
