@@ -1,7 +1,6 @@
 import axios from "axios";
 import {configureStore,createAsyncThunk,createSlice} from "@reduxjs/toolkit"; 
 import { API_KEY, TMDB_BASE_URL } from "../utils/configs";
-import { async } from "@firebase/util";
 
 const initialState = {
     movies:[],
@@ -33,15 +32,15 @@ const getRawData = async (api,genres,paging = false)=>{
         data : {results},
     } =  await axios.get(`${api}${paging ? `&page=${i}` : ""}`); 
        createArrayFromRawData(results,moviesArray,genres);
-    return moviesArray; 
     }
-}
+    return moviesArray; 
+};
 
 export const fetchMovies = createAsyncThunk("netflix/trending", async({type}, thunkApi)=>{
     const{netflix:{genres}, 
     } = thunkApi.getState();
-    const data = getRawData(`${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,genres,true);
-    console.log(data);
+    return getRawData(`${TMDB_BASE_URL}/trending/${type}/week?api_key=${API_KEY}`,genres,true);
+    //console.log(data);
 });
 
 export const getGenres = createAsyncThunk("netflix/genres",async()=> {
@@ -57,7 +56,10 @@ const NetflixSlice = createSlice({
         builder.addCase(getGenres.fulfilled,(state,action)=> {
             state.genres = action.payload; 
             state.genresLoaded = true;
-        })
+        });
+        builder.addCase(fetchMovies.fulfilled,(state,action)=> {
+            state.movies = action.payload; 
+        });
     },
 });
 
@@ -66,3 +68,5 @@ export const store = configureStore({
         netflix: NetflixSlice.reducer,
     },
 }); 
+
+
