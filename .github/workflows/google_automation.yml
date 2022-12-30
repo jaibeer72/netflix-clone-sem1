@@ -40,3 +40,8 @@ jobs:
 
         - name: Deploy Docker images
           run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image jaibeer72/fake-flex-ui --image jaibeer72/fake-flex-ui  --region us-central1 --platform managed
+
+    # problems to solve 
+    # get it running on google cloud to do both contrainers at once 
+    # make sure to get a static IP to get things connected to mongodb 
+    
