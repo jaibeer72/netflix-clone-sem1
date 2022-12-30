@@ -1,0 +1,9 @@
+services:
+  api:
+    build: ./netflix-api
+    container_name: api_c
+    ports: 
+      - '4000:4000'
+    volumes: 
+      - ./netflix-api:/serv-api
+      - ./netflix-api:/node_modules
