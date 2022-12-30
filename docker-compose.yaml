@@ -7,3 +7,14 @@ services:
     volumes: 
       - ./netflix-api:/serv-api
       - ./netflix-api:/node_modules
+  
+  fake-flix: 
+    build: ./netflix-ui
+    container_name: fake-flix_c
+    ports: 
+      - '3000:3000'
+    volumes: 
+      - ./netflix-ui:/app
+      - ./netflix-ui:/node_modules
+    stdin_open: true
+    tty: true 
