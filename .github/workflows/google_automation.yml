@@ -35,8 +35,8 @@ jobs:
         # - name: Test Docker image
         #   run: docker compose up
 
-        - name: Push Docker image
-          run: docker compose push
+        # - name: Push Docker image
+        #   run: docker compose push
 
         - name: Deploy Docker images
           run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image jaibeer72/fake-flex-ui --image jaibeer72/fake-flex-ui  --region us-central1 --platform managed
