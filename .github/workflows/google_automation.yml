@@ -32,8 +32,8 @@ jobs:
         - name: Build Docker image
           run: docker compose build
 
-        - name: Test Docker image
-          run: docker compose up
+        # - name: Test Docker image
+        #   run: docker compose up
 
         - name: Push Docker image
           run: docker compose push
