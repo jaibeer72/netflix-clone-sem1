@@ -20,3 +20,5 @@ services:
     stdin_open: true
     tty: true 
     image: jaibeer72/fake-flex-ui:master
+
+    # orignal link https://netflix-clone-sem1-tgtdrwmp3q-uc.a.run.app/login
