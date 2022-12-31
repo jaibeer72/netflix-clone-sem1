@@ -9,7 +9,6 @@ const app = express();
 
 // some credential issues needed to be fixed i don't like the manual port entry ill fix it if needed
 const corsOptions ={
-    origin:'http://localhost:3000', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
