@@ -58,11 +58,11 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
                 isHovered && (
                     <div className="hover">
                         <div className="image-video-container">
-                            <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt="Movie" onClick={() => navigate("/player")} />
-                            <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1&loop=1`} onClick={() => navigate("/player")} />
+                            <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt="Movie" onClick={() => navigate(`/player/${video}`)} />
+                            <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1&loop=1`} onClick={() => navigate(`/player/${video}`)} />
                         </div>
                         <div className="info-container flex column">
-                            <h3 className="name" onClick={() => navigate("/player")}>
+                            <h3 className="name" onClick={() => navigate(`/player/${video}`)}>
                                 {movieData.name}
                             </h3>
                             <div className="icons flex j-between">

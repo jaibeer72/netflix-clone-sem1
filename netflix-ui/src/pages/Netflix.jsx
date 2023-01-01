@@ -44,7 +44,7 @@ export default function Netflix() {
             <img src={MovieLogo} alt="Movie Logo"/>
           </div>
           <div className="buttons flex">
-            <button className='flex j-center a-center' onClick={()=> navigate('/player')}>
+            <button className='flex j-center a-center' onClick={()=> navigate("/player/yQEondeGvKo")}>
                 <FaPlay/> Play
             </button>
             <button className='flex j-center a-center'>

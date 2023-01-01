@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components'; 
 import {BsArrowLeft} from 'react-icons/bs'; 
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export default function Player() {
     const navigate = useNavigate(); 
+
+    let params = useParams(); 
+    let vidId = params.id;
+
     // Preventing normal context menu so no one can download :P win! 
     document.addEventListener("contextmenu", (event) => {
         event.preventDefault();
@@ -15,7 +19,7 @@ export default function Player() {
         <div className="back">
             <BsArrowLeft onClick={() => navigate(-1)}/> 
         </div>
-        <iframe src={`https://www.youtube.com/embed/A4C49gUVV2o?autoplay=1&mute=1`} autoPlay loop controls muted controlsList="nodownload"></iframe>
+        <iframe src={`https://www.youtube.com/embed/${vidId}?autoplay=1&mute=1`} autoPlay loop controls muted controlsList="nodownload"></iframe>
     </div>
   </Container>
   );
