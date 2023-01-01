@@ -1,7 +1,6 @@
 import axios from "axios";
 import { configureStore, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { API_KEY, Server_API_Base, TMDB_BASE_URL } from "../utils/configs";
-import { async } from "@firebase/util";
 
 const initialState = {
     movies: [],

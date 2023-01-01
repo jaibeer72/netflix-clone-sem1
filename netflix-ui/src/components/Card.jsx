@@ -8,7 +8,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { IoPlayCircleSharp } from "react-icons/io5";
 import axios from 'axios';
-import { Server_API_Base } from "../utils/configs";
+import { API_KEY, Server_API_Base, TMDB_BASE_URL } from "../utils/configs";
 import { onAuthStateChanged } from "firebase/auth";
 import { firebaseAuth } from '../utils/firebase-config'
 import { useDispatch } from 'react-redux';
@@ -20,6 +20,7 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState(undefined);
+    const [video, setVideo] = useState(undefined);
     onAuthStateChanged(firebaseAuth, (currenUser) => {
         if (currenUser) setEmail(currenUser.email);
         else navigate("/login");
@@ -34,15 +35,31 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
         }
     }
 
+    const getVideo = async () => {
+        try {
+            const {
+                data: { results },
+            } = await axios.get(`${TMDB_BASE_URL}/movie/${movieData.id}/videos?api_key=${API_KEY}`, { email, data: movieData });
+            results.forEach((vid)=>{
+                if(vid.site === "YouTube")
+                {
+                    setVideo(vid.key);
+                }
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     return (
-        <Container onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <Container onMouseEnter={() => {setIsHovered(true); getVideo()}} onMouseLeave={() => setIsHovered(false)}>
             <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt="movieImage" />
             {
                 isHovered && (
                     <div className="hover">
                         <div className="image-video-container">
                             <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt="Movie" onClick={() => navigate("/player")} />
-                            <iframe src={`https://www.youtube.com/embed/Xc72yWJEb8Q?autoplay=1&mute=1&loop=1`} onClick={() => navigate("/player")} />
+                            <iframe src={`https://www.youtube.com/embed/${video}?autoplay=1&mute=1&loop=1`} onClick={() => navigate("/player")} />
                         </div>
                         <div className="info-container flex column">
                             <h3 className="name" onClick={() => navigate("/player")}>
