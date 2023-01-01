@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import video from "../assets/Video.mp4";
 import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BsCheck } from "react-icons/bs";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -43,7 +42,7 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
                     <div className="hover">
                         <div className="image-video-container">
                             <img src={`https://image.tmdb.org/t/p/w500${movieData.image}`} alt="Movie" onClick={() => navigate("/player")} />
-                            <video src={video} autoPlay loop muted onClick={() => navigate("/player")} />
+                            <iframe src={`https://www.youtube.com/embed/Xc72yWJEb8Q?autoplay=1&mute=1&loop=1`} onClick={() => navigate("/player")} />
                         </div>
                         <div className="info-container flex column">
                             <h3 className="name" onClick={() => navigate("/player")}>
@@ -115,7 +114,7 @@ const Container = styled.div`
                 z-index: 4;
                 position: absolute;
             }
-            video{
+            iframe{
                 width: 100%;
                 height: 140px;
                 object-fit: cover;

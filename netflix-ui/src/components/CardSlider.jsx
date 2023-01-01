@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import { useState } from 'react';
 import { useRef } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
-import { BiDirections } from 'react-icons/bi';
 
 export default React.memo ( function CardSlider({ data, title }) {
   const [showControls, setShowControls] = useState(false);
