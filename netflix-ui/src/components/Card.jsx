@@ -35,6 +35,21 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
         }
     }
 
+    const addToReccomendation = async () => {
+        try {
+            await axios.post(`${Server_API_Base}/api/suggest/like`, { email, data: movieData });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    const removeFromReccomendation = async () => {
+        try {
+            await axios.put(`${Server_API_Base}/api/suggest/removeFromLiked`, { email, data: movieData });
+        } catch (err) {
+            console.log(err);
+        }
+    }
+
     const getVideo = async () => {
         try {
             const {
@@ -68,8 +83,8 @@ export default React.memo(function Card({ movieData, isLiked = false }) {
                             <div className="icons flex j-between">
                                 <div className="controles flex">
                                     <IoPlayCircleSharp title="play" onClick={() => navigate("/player")} />
-                                    <RiThumbUpFill title="like" />
-                                    <RiThumbDownFill title="dislike" />
+                                    <RiThumbUpFill title="like" onClick={addToReccomendation}/>
+                                    <RiThumbDownFill title="dislike" onClick={removeFromReccomendation}/>
                                     {
                                         isLiked ? (
                                             <BsCheck title="Remove From List" onClick={() => dispatch(removeMovieFromLiked({ movieId: movieData.id, email }))} />

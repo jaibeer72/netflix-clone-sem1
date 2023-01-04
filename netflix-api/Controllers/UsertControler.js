@@ -59,6 +59,7 @@ module.exports.removeFromLikedMovies = async (req, res) => {
       return res.json({ msg: "Movie successfully removed.", movies });
     } else return res.json({ msg: "User with given email not found." });
   } catch (error) {
-    return res.json({ msg: "Error removing movie to the liked list" });
+    const result = [];
+    return res.json({ msg: "Error removing movie to the liked list" ,result}); // just a cheeky way to not kill the page lol
   }
 };

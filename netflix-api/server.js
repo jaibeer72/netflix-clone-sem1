@@ -1,7 +1,8 @@
 const express = require("express");
 const cors = require("cors"); 
 const mongoose = require("mongoose");
-const userRouts = require("./Routs/userRounts")
+const userRouts = require("./Routs/userRounts");
+const suggestRouts = require("./Routs/ReccmondationRouts");
 
 require('dotenv').config()
 
@@ -27,6 +28,7 @@ mongoose
   });
 
 app.use("/api/user",userRouts);
+app.use("/api/suggest",suggestRouts);
 
 
 app.listen(4000,console.log("server started")); 
