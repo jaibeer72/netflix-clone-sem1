@@ -4,6 +4,7 @@ import { API_KEY, Server_API_Base, TMDB_BASE_URL } from "../utils/configs";
 
 const initialState = {
     movies: [],
+    reccmonded:[],
     genresLoaded: false,
     genres: [],
 };
@@ -112,7 +113,7 @@ const NetflixSlice = createSlice({
             state.movies = action.payload;
         });
         builder.addCase(getUserReccmondedMovies.fulfilled, (state, action) => {
-            state.movies = action.payload;
+            state.reccmonded = action.payload;
         });
     },
 });
