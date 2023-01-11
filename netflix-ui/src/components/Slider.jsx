@@ -33,7 +33,7 @@ export default React.memo( function Slider({movies}) {
     
   return (
     <div> 
-      {!(reccmondedMovies && reccmondedMovies.length >=5) ? "" : <CardSlider title = "Suggested" data={reccmondedMovies.slice(0,10)}/>}
+      {!(reccmondedMovies && reccmondedMovies.length >=5) ? "" : <CardSlider title = "Reccmonded" data={reccmondedMovies.slice(0,10)}/>}
     <CardSlider title = "Trending Now" data={getMoviesFromRange(0,10)}/>
     <CardSlider title = "New Releases" data={getMoviesFromRange(10,20)}/>
     <CardSlider title = "Blockbuster Movies" data={getMoviesFromRange(20,30)}/>
